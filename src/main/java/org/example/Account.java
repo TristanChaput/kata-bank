@@ -1,7 +1,8 @@
 package org.example;
 
 public class Account {
-    public int balance;
+
+    private int balance;
 
     public Account(int initialAmount) {
         balance = initialAmount;
@@ -16,5 +17,9 @@ public class Account {
             throw new NotEnoughMoneyException();
         }
         balance -= amount;
+    }
+
+    public int getBalance() {
+        return balance;
     }
 }

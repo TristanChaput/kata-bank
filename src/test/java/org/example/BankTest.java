@@ -16,7 +16,7 @@ public class BankTest {
 
         account.deposit(amount);
 
-        assertEquals(expected, account.balance);
+        assertEquals(expected, account.getBalance());
     }
 
     @ParameterizedTest(name = "When initial amount is {1}, and withdraw amount is {2} the balance should be {0}")
@@ -27,7 +27,7 @@ public class BankTest {
 
         account.withdraw(amount);
 
-        assertEquals(expected, account.balance);
+        assertEquals(expected, account.getBalance());
     }
 
     @Test
