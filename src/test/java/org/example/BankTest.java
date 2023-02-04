@@ -18,4 +18,15 @@ public class BankTest {
 
         assertEquals(expected, account.balance);
     }
+
+    @ParameterizedTest(name = "When initial amount is {1}, and withdraw amount is {2} the balance should be {0}")
+    @CsvSource({"0, 500, 500", "0, 100, 100", "200, 400, 200"})
+    void test_should_return_actualized_balance_when_withdraw_amount_on_an_account_with_an_initial_amount
+            (int expected, int initialAmount, int amount){
+        Account account = new Account(initialAmount);
+
+        account.withdraw(amount);
+
+        assertEquals(expected, account.balance);
+    }
 }
