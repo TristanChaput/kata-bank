@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.time.LocalDate;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BankTest {
@@ -35,5 +37,14 @@ public class BankTest {
         Account account = new Account(0);
 
         assertThrows(NotEnoughMoneyException.class, () -> account.withdraw(100));
+    }
+
+    @Test
+    void test_should_return_an_operation_with_a_date_an_operation_type_and_the_amount(){
+        Operation operation = new Operation(OperationType.DEPOSIT, 100);
+
+        assertEquals(LocalDate.now(), operation.getDate());
+        assertEquals(OperationType.DEPOSIT, operation.getType());
+        assertEquals(100, operation.getAmount());
     }
 }
