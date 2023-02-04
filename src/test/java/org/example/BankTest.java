@@ -23,4 +23,13 @@ public class BankTest {
 
         assertEquals(100, account.balance);
     }
+
+    @Test
+    void test_should_return_200_when_deposit_100_on_the_new_account_with_100_at_initial_amount(){
+        Account account = new Account(100);
+
+        account.deposit(100);
+
+        assertEquals(200, account.balance);
+    }
 }
