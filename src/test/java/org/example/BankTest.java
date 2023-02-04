@@ -29,4 +29,11 @@ public class BankTest {
 
         assertEquals(expected, account.balance);
     }
+
+    @Test
+    void test_should_return_a_NotEnoughMoneyException_when_the_balance_account_is_0_and_withdraw_amount_is_100(){
+        Account account = new Account(0);
+
+        assertThrows(NotEnoughMoneyException.class, () -> account.withdraw(100));
+    }
 }
