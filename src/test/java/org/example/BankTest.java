@@ -10,12 +10,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class BankTest {
 
-    @ParameterizedTest(name = "When initial amount is {1}, the amount of the operation should be {0}")
-    @CsvSource({"500, 500", "100, 100", "200, 200"})
-    void test_should_return_a_deposit_operation_when_deposit_amount_on_a_new_account(int expected, int initialAmount){
+    @ParameterizedTest(name = "When initial amount is {2}, the amount of the operation should be {0} and the balance should be {1}")
+    @CsvSource({"500, 500, 500", "100, 100, 100", "200, 200, 200"})
+    void test_should_return_a_deposit_operation_when_deposit_amount_on_a_new_account(int expected, int expectedAmount, int initialAmount){
         Account account = new Account(initialAmount);
 
-        assertEquals(expected, account.getOperations().get(account.getOperations().size() - 1).getAmount());
+        assertEquals(expected, account.getBalance());
+        assertEquals(expectedAmount, account.getOperations().get(account.getOperations().size() - 1).getAmount());
         assertEquals(LocalDate.now(), account.getOperations().get(account.getOperations().size() - 1).getDate());
         assertEquals(OperationType.DEPOSIT, account.getOperations().get(account.getOperations().size() - 1).getType());
     }
