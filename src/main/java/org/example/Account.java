@@ -24,15 +24,17 @@ public class Account {
     }
 
     public int getBalance() {
-        int balance = 0;
-        for (Operation operation:this.operations) {
-            if (operation.getType() == OperationType.DEPOSIT){
-                balance += operation.getAmount();
-            } else if (operation.getType() == OperationType.WITHDRAW) {
-                balance -= operation.getAmount();
-            }
-        }
-        return balance;
+        return this.operations.stream()
+                .mapToInt(operation -> {
+                    int res = 0;
+                    if(OperationType.WITHDRAW.equals(operation.getType())){
+                        res -= operation.getAmount();
+                    }else if (OperationType.DEPOSIT.equals(operation.getType())){
+                        res += operation.getAmount();
+                    }
+                    return res;
+                })
+                .sum();
     }
 
     public List<Operation> getOperations() {
