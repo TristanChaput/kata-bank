@@ -50,4 +50,17 @@ public class BankTest {
         assertEquals(OperationType.DEPOSIT, operation.getType());
         assertEquals(100, operation.getAmount());
     }
+
+    @Test
+    void test_should_return_the_statement_of_an_account(){
+        Account account = new Account(500);
+        account.withdraw(100);
+
+        String expected =
+                "Date Amount Balance\n"+
+                LocalDate.now() + " +500 500\n"+
+                LocalDate.now() + " -100 400\n";
+
+        assertEquals(expected, account.printStatement());
+    }
 }
