@@ -1,5 +1,5 @@
 package org.example;
 
 public enum OperationType {
-    DEPOSIT,
+    DEPOSIT, WITHDRAW,
 }

@@ -5,11 +5,9 @@ import java.util.List;
 
 public class Account {
 
-    private int balance;
     private final List<Operation> operations;
 
     public Account(int initialAmount) {
-        balance = initialAmount;
         operations = new ArrayList<>();
         deposit(initialAmount);
     }
@@ -19,13 +17,21 @@ public class Account {
     }
 
     public void withdraw(int amount) {
-        if( balance < amount ) {
+        if( getBalance() < amount ) {
             throw new NotEnoughMoneyException();
         }
-        balance -= amount;
+        operations.add(new Operation(OperationType.WITHDRAW, amount));
     }
 
     public int getBalance() {
+        int balance = 0;
+        for (Operation operation:this.operations) {
+            if (operation.getType() == OperationType.DEPOSIT){
+                balance += operation.getAmount();
+            } else if (operation.getType() == OperationType.WITHDRAW) {
+                balance -= operation.getAmount();
+            }
+        }
         return balance;
     }
 

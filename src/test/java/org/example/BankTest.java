@@ -21,14 +21,17 @@ public class BankTest {
     }
 
     @ParameterizedTest(name = "When initial amount is {1}, and withdraw amount is {2} the balance should be {0}")
-    @CsvSource({"0, 500, 500", "0, 100, 100", "200, 400, 200"})
-    void test_should_return_actualized_balance_when_withdraw_amount_on_an_account_with_an_initial_amount
-            (int expected, int initialAmount, int amount){
+    @CsvSource({"0, 500, 500, 500", "0, 100, 100, 100", "200, 200, 400, 200"})
+    void test_should_return_a_withdraw_operation_when_withdraw_amount_on_a_new_account_with_an_initial_amount
+            (int expected, int expectedAmount, int initialAmount, int amount){
         Account account = new Account(initialAmount);
 
         account.withdraw(amount);
 
         assertEquals(expected, account.getBalance());
+        assertEquals(expectedAmount, account.getOperations().get(account.getOperations().size() - 1).getAmount());
+        assertEquals(LocalDate.now(), account.getOperations().get(account.getOperations().size() - 1).getDate());
+        assertEquals(OperationType.WITHDRAW, account.getOperations().get(account.getOperations().size() - 1).getType());
     }
 
     @Test
