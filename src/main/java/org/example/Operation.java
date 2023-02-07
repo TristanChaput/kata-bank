@@ -25,4 +25,8 @@ public class Operation {
     public int getAmount() {
         return amount;
     }
+
+    public int balanceAmount() {
+        return type.balanceAmount(amount);
+    }
 }

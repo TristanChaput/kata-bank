@@ -29,15 +29,7 @@ public class Account {
 
     public int getBalanceFromAListOfOperations(List<Operation> operations) {
         return operations.stream()
-                .mapToInt(operation -> {
-                    int res = 0;
-                    if(OperationType.WITHDRAW.equals(operation.getType())){
-                        res -= operation.getAmount();
-                    }else if (OperationType.DEPOSIT.equals(operation.getType())){
-                        res += operation.getAmount();
-                    }
-                    return res;
-                })
+                .mapToInt(Operation::balanceAmount)
                 .sum();
     }
 
