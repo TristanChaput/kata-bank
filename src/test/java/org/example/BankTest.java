@@ -61,6 +61,6 @@ public class BankTest {
                 LocalDate.now() + " +500 500\n"+
                 LocalDate.now() + " -100 400\n";
 
-        assertEquals(expected, account.printStatement());
+        assertEquals(expected, BankPrinter.printStatement(account));
     }
 }
