@@ -9,6 +9,7 @@ A code kata is a programming exercise that allows programmers to hone their skil
 ## **tl:dr**;
 
 Problem: write a program that reproduce the behaviour of a bank account.
+
 3 simple operations,
 
 1. Deposit
